@@ -82,6 +82,9 @@ export const verifySecret = async ({
 
     const session = await account.createSession(accountId, password);
 
+    console.log(session);
+    console.log(session.secret);
+
     (await cookies()).set("appwrite-session", session.secret, {
       path: "/",
       httpOnly: true,
@@ -111,7 +114,7 @@ export const getCurrentUser = async () => {
 
     return parseStringify(user.documents[0]);
   } catch (error) {
-    return null
+    return error;
   }
 };
 
